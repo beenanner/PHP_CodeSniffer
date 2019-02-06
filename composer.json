@@ -48,6 +48,7 @@
             "CodeSniffer/Standards/PSR1/Sniffs/",
             "CodeSniffer/Standards/PSR2/Sniffs/",
             "CodeSniffer/Standards/Squiz/Sniffs/",
+            "CodeSniffer/Standards/Symfony2/Sniffs/",
             "CodeSniffer/Standards/Zend/Sniffs/"
         ]
     },
