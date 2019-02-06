@@ -23,6 +23,7 @@ abstract class My_Class {
     function getSomeValue() {}
     function parseMyDSN() {}
     function get_some_value() {}
+    function o_toString() {}
 
 }//end class
 
@@ -60,5 +61,13 @@ class Foo extends \SoapClient
     ) {
         // body
     }
+
+    function __() {}
+}
+
+function ___tripleUnderscore() {} // Ok.
+
+class triple {
+    public function ___tripleUnderscore() {} // Ok.
 }
 ?>

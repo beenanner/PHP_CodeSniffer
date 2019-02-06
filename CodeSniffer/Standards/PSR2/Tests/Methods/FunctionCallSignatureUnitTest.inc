@@ -21,7 +21,7 @@ somefunction2($foo, $bar, [
 $baz);
 
 // ok
-somefunction3(
+somefunction3(// ...
     $foo,
     $bar,
     [
@@ -52,4 +52,128 @@ somefunction6('
     $foo
 );
 
-?>
+$this->setFoo(true
+    ? 1
+    : 2, false, array(
+    'value',
+    'more'));
+
+$this->setFoo('some'
+    . 'long'
+    . 'text', 'string');
+
+foo(bar(), $a);
+foo();bar();
+
+foo(
+    true
+);
+
+myFunction(<<<END
+Foo
+END
+);
+
+var_dump(array(<<<'EOD'
+foobar!
+EOD
+));
+
+myFunction(<<<END
+Foo
+END
+, 'bar');
+
+myFunction(<<<END
+Foo
+END
+,
+'bar');
+
+if (array_filter(
+    $commands,
+    function ($cmd) use ($commandName) {
+        return ($cmd['name'] == $commandName);
+    }
+)) {
+    // Do something
+}
+
+myFunction(
+    'foo', (object) array(
+        'bar' => function ($x) {
+            return true;
+        },
+        'baz' => false
+    )
+);
+$qux = array_filter(
+    $quux, function ($x) {
+        return $x;
+    }
+);
+
+$this->listeners[] = $events->getSharedManager()->attach(
+        'Zend\Mvc\Application', MvcEvent::EVENT_DISPATCH, [$this, 'selectLayout'], 100
+);
+
+// @codingStandardsChangeSetting PSR2.Methods.FunctionCallSignature requiredSpacesBeforeClose 1
+foo('Testing
+    multiline text'
+ );
+
+foo('Testing
+    multiline text: ' // . $text
+ );
+
+foo('Testing
+    multiline text: ' /* . $text */
+ );
+
+foo('Testing
+    multiline text: ' /* . $text */
+    // . $other_text
+ );
+
+foo('Testing
+    multiline text: ' /*
+ . $text
+// . $text2
+ */
+ );
+// @codingStandardsChangeSetting PSR2.Methods.FunctionCallSignature requiredSpacesBeforeClose 0
+
+foo('Testing
+    multiline text'
+);
+
+foo('Testing
+    multiline text'
+ );
+
+foo('Testing
+    multiline text' // hello
+);
+
+foo('Testing
+    multiline text' /* hello */
+);
+
+foo('Testing
+    multiline text'
+    // hello
+);
+
+foo('Testing
+    multiline text'
+    /* hello */
+);
+
+$var = foo('Testing
+    multiline'
+    // hi
+    ) + foo('Testing
+    multiline'
+    // hi
+    )
+;

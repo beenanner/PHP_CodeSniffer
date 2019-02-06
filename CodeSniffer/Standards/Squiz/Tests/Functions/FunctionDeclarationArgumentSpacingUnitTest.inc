@@ -53,7 +53,25 @@ function myFunc( $blah ) {}
 function myFunc(  $blah  ) {}
 function myFunc( array $blah ) {}
 function myFunc(array $blah ) {}
+function myFunc(  array $blah ) {}
 function myFunc() {}
 function myFunc( ) {}
+
+function multiLineFunction(
+	array $flatList,
+	$markup,
+	array $otherList,
+	$lastOffset=0
+) {
+}
 // @codingStandardsChangeSetting Squiz.Functions.FunctionDeclarationArgumentSpacing requiredSpacesAfterOpen 0
 // @codingStandardsChangeSetting Squiz.Functions.FunctionDeclarationArgumentSpacing requiredSpacesBeforeClose 0
+
+function myFunc($req, $opt=null, ...$params) {}
+function myFunc($param, &...$moreParams) {}
+
+function MissingParamTypeInDocBlock(array$a = null, callable$c, \ArrayObject$o, $foo = []) {}
+
+function myFunc(...$args) {}
+function myFunc( ...$args) {}
+function myFunc(... $args) {}

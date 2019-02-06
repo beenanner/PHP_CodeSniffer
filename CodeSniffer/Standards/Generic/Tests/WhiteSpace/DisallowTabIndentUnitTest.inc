@@ -2,7 +2,7 @@
 
 class ExampleClass
 {
-	function exampleFunction() {}
+	function exampleFunction()	{}
 
 }
 
@@ -14,4 +14,38 @@ EOF;
     $correctVar = true;
 	$correctVar = false;
 
+class MyClass
+{
+    /**
+	 * Short	description.
+	 *
+	 * @return	void
+	 */
+    public function 	myFunction() {	}
+}
+
+$str = 'hello
+		there';
+
+$foo = array(
+	'Česká republika'   => 'Czech republic',
+	'România'			=> 'Romania',
+	'Magyarország'	   	=> 'Hungary',
+);
+
+$var = "$hello	$there";
+
 ?>
+<html>
+    <head>
+		<title>Foo</title>
+	</head>
+	<body>
+		<div>
+    		<div>
+				<div>
+	    		</div>
+    	    </div>
+        </div>
+    </body>
+</html>

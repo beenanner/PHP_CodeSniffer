@@ -128,7 +128,7 @@ class PHP_CodeSniffer_File
     public function missingDescription($threeSpaces)
     {
 
-    }//end missingDescroption()
+    }//end missingDescription()
 
 
     /**
@@ -152,16 +152,16 @@ class PHP_CodeSniffer_File
 /**
  * A simple function comment.
  *
- * @param string $str The string passed in by reference
+ * @param string &$str The string passed in by reference
+ * @param string $foo  The string passed in by reference.
  *
  * @return void
  * @return
  */
-public function functionOutsideClass(&$str)
+public function functionOutsideClass(&$str, &$foo)
 {
     return;
 }//end functionOutsideClass()
-
 
 function missingCommentOutsideClass()
 {
@@ -444,7 +444,7 @@ class MyClass() {
     /**
      * An abstract function.
      *
-     * @return array(string)
+     * @return string[]
      */
     abstract final protected function myFunction();
 }
@@ -610,6 +610,270 @@ public function test()
  */
 public function usesCallable(callable $cb) {
     $cb();
+}//end usesCallable()
+
+/**
+ * Creates a map of tokens => line numbers for each token.
+ *
+ * @param array  $tokens    The array of tokens to process.
+ * @param object $tokenizer The tokenizer being used to process this file.
+ * @param string $eolChar   The EOL character
+ *                          to use for splitting strings.
+ *
+ * @return void
+ * @throws Exception If something really bad
+ *                   happens while doing foo.
+ */
+public function foo(array &$tokens, $tokenizer, $eolChar)
+{
+
+}//end foo()
+
+/**
+ * Some description.
+ *
+ * @param \Vendor\Package\SomeClass       $someclass  Some class.
+ * @param \OtherVendor\Package\SomeClass2 $someclass2 Some class.
+ * @param \OtherVendor\Package\SomeClass2 $someclass3 Some class.
+ *
+ * @return void
+ */
+public function foo(SomeClass $someclass, \OtherVendor\Package\SomeClass2 $someclass2, SomeClass3 $someclass3)
+{
 }
 
-?>
+/**
+ * Gettext.
+ *
+ * @return string
+ */
+public function _() {
+    return $foo;
+}
+
+class Baz {
+    /**
+     * The PHP5 constructor
+     *
+     * No return tag
+     */
+    public function __construct() {
+
+    }
+}
+
+/**
+ * Test
+ *
+ * @return void
+ * @throws E 
+ */
+function myFunction() {}
+
+/**
+ * Yield test
+ *
+ * @return integer
+ */
+function yieldTest()
+{
+    for ($i = 0; $i < 5; $i++) {
+        yield $i;
+    }
+}
+
+/**
+ * Yield test
+ *
+ * @return void
+ */
+function yieldTest()
+{
+    for ($i = 0; $i < 5; $i++) {
+        yield $i;
+    }
+}
+
+/**
+ * Using "array" as a type hint should satisfy a specified array parameter type.
+ *
+ * @param MyClass[] $values An array of MyClass objects.
+ *
+ * @return void
+ */
+public function specifiedArray(array $values) {
+
+}// end specifiedArray()
+
+/**
+ * Using "callable" as a type hint should satisfy a "callback" parameter type.
+ *
+ * @param callback $cb A callback.
+ *
+ * @return void
+ */
+public function callableCallback(callable $cb) {
+
+}// end callableCallback()
+
+/**
+ * PHP7 type hints.
+ *
+ * @param string  $name1 Comment.
+ * @param integer $name2 Comment.
+ * @param float   $name3 Comment.
+ * @param boolean $name4 Comment.
+ *
+ * @return void
+ */
+public function myFunction (string $name1, int $name2, float $name3, bool $name4) {
+}
+
+/**
+ * Variadic function.
+ *
+ * @param string $name1    Comment.
+ * @param string ...$name2 Comment.
+ *
+ * @return void
+ */
+public function myFunction(string $name1, string ...$name2) {
+}
+
+
+/**
+ * Variadic function.
+ *
+ * @param string $name1 Comment.
+ * @param string $name2 Comment.
+ *
+ * @return void
+ */
+public function myFunction(string $name1, string ...$name2) {
+}
+
+/**
+ * Return description function + correct type.
+ *
+ * @return integer This is a description.
+ */
+public function myFunction() {
+    return 5;
+}
+
+/**
+ * Return description function + incorrect type.
+ *
+ * @return int This is a description.
+ */
+public function myFunction() {
+    return 5;
+}
+
+/**
+ * Return description function + no return.
+ *
+ * @return void This is a description.
+ */
+public function myFunction() {
+}
+
+/**
+ * Return description function + mixed return.
+ *
+ * @return mixed This is a description.
+ */
+public function myFunction() {
+}
+
+/**
+ * Function comment.
+ *
+ * @param $bar
+ *   Comment here.
+ * @param ...
+ *   Additional arguments here.
+ *
+ * @return
+ *   Return value
+ *
+ */
+function foo($bar) {
+}
+
+/**
+ * Do something.
+ *
+ * @return void
+ */
+public function someFunc(): void
+{
+    $class = new class
+    {
+        /**
+         * Do something.
+         *
+         * @return string
+         */
+        public function getString(): string
+        {
+            return 'some string';
+        }
+    };
+}
+
+/**
+ * Return description function + mixed return types.
+ *
+ * @return bool|int This is a description.
+ */
+function returnTypeWithDescriptionA()
+{
+    return 5;
+
+}//end returnTypeWithDescriptionA()
+
+
+/**
+ * Return description function + mixed return types.
+ *
+ * @return real|bool This is a description.
+ */
+function returnTypeWithDescriptionB()
+{
+    return 5;
+
+}//end returnTypeWithDescriptionB()
+
+
+/**
+ * Return description function + lots of different mixed return types.
+ *
+ * @return int|object|string[]|real|double|float|bool|array(int=>MyClass)|callable And here we have a description
+ */
+function returnTypeWithDescriptionC()
+{
+    return 5;
+
+}//end returnTypeWithDescriptionC()
+
+
+/**
+ * Return description function + lots of different mixed return types.
+ *
+ * @return array(int=>bool)|\OtherVendor\Package\SomeClass2|MyClass[]|void And here we have a description
+ */
+function returnTypeWithDescriptionD()
+{
+
+}//end returnTypeWithDescriptionD()
+
+/**
+ * Yield from test
+ *
+ * @return int[]
+ */
+function yieldFromTest()
+{
+    yield from foo();
+}

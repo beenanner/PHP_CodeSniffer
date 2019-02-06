@@ -41,4 +41,26 @@ abstract class MyAbstractClass extends \MyNamespace\SomeClass
 {
     abstract public function __construct();
 }
-?>
+
+class OldClass
+{
+    function OldClass()
+    {
+
+    }
+}
+
+foo(new class extends MyClass
+{
+
+    function TestClass() {
+        parent::MyClass();
+        parent::__construct();
+    }
+
+    function __construct() {
+        parent::MyClass();
+        parent::__construct();
+    }
+
+});

@@ -40,6 +40,7 @@ class Squiz_Sniffs_WhiteSpace_SemicolonSpacingSniff implements PHP_CodeSniffer_S
                                    'JS',
                                   );
 
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -66,21 +67,40 @@ class Squiz_Sniffs_WhiteSpace_SemicolonSpacingSniff implements PHP_CodeSniffer_S
         $tokens = $phpcsFile->getTokens();
 
         $prevType = $tokens[($stackPtr - 1)]['code'];
-        if (in_array($prevType, PHP_CodeSniffer_Tokens::$emptyTokens) === true) {
-            $nonSpace = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 2), null, true);
-            $expected = $tokens[$nonSpace]['content'].';';
-            $found    = $phpcsFile->getTokensAsString($nonSpace, ($stackPtr - $nonSpace)).';';
-            $error    = 'Space found before semicolon; expected "%s" but found "%s"';
-            $data     = array(
-                         $expected,
-                         $found,
-                        );
-            $phpcsFile->addError($error, $stackPtr, 'Incorrect', $data);
+        if (isset(PHP_CodeSniffer_Tokens::$emptyTokens[$prevType]) === false) {
+            return;
+        }
+
+        $nonSpace = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 2), null, true);
+        if ($tokens[$nonSpace]['code'] === T_SEMICOLON) {
+            // Empty statement.
+            return;
+        }
+
+        $expected = $tokens[$nonSpace]['content'].';';
+        $found    = $phpcsFile->getTokensAsString($nonSpace, ($stackPtr - $nonSpace)).';';
+        $error    = 'Space found before semicolon; expected "%s" but found "%s"';
+        $data     = array(
+                     $expected,
+                     $found,
+                    );
+
+        $fix = $phpcsFile->addFixableError($error, $stackPtr, 'Incorrect', $data);
+        if ($fix === true) {
+            $phpcsFile->fixer->beginChangeset();
+            $i = ($stackPtr - 1);
+            while (($tokens[$i]['code'] === T_WHITESPACE) && ($i > $nonSpace)) {
+                $phpcsFile->fixer->replaceToken($i, '');
+                $i--;
+            }
+
+            $phpcsFile->fixer->addContent($nonSpace, ';');
+            $phpcsFile->fixer->replaceToken($stackPtr, '');
+
+            $phpcsFile->fixer->endChangeset();
         }
 
     }//end process()
 
 
 }//end class
-
-?>

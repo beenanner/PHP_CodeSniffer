@@ -38,7 +38,7 @@ class Squiz_Tests_PHP_NonExecutableCodeUnitTest extends AbstractSniffUnitTest
      * The key of the array should represent the line number and the value
      * should represent the number of errors that should occur on that line.
      *
-     * @return array(int => int)
+     * @return array<int, int>
      */
     public function getErrorList()
     {
@@ -53,7 +53,7 @@ class Squiz_Tests_PHP_NonExecutableCodeUnitTest extends AbstractSniffUnitTest
      * The key of the array should represent the line number and the value
      * should represent the number of warnings that should occur on that line.
      *
-     * @return array(int => int)
+     * @return array<int, int>
      */
     public function getWarningList()
     {
@@ -76,16 +76,16 @@ class Squiz_Tests_PHP_NonExecutableCodeUnitTest extends AbstractSniffUnitTest
                 95  => 1,
                 105 => 1,
                 123 => 1,
-                146 => 1,
-                149 => 1,
-                152 => 1,
-                165 => 1,
-                179 => 1,
-                221 => 1,
-                222 => 1,
-                223 => 1,
-                224 => 2,
-                228 => 1,
+                147 => 1,
+                150 => 1,
+                153 => 1,
+                166 => 1,
+                180 => 1,
+                232 => 1,
+                233 => 1,
+                234 => 1,
+                235 => 2,
+                239 => 1,
                );
 
     }//end getWarningList()

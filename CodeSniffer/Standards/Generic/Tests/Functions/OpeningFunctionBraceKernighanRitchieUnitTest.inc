@@ -114,4 +114,56 @@ function myFunction(
                     ) {
 }
 
-?>
+function myFunction() {}
+function myFunction()
+{}
+
+// @codingStandardsChangeSetting Generic.Functions.OpeningFunctionBraceKernighanRitchie checkClosures 1
+
+$closureWithArgs = function ($arg1, $arg2){
+    // body
+};
+
+$closureWithArgsAndVars = function ($arg1, $arg2) use ($var1, $var2){
+    // body
+};
+
+$test = function ($param) use ($result)
+{
+    return null;
+}
+
+$test = function ($param) use ($result) : Something
+{
+    return null;
+}
+
+$test = function ($param) use ($result): Something
+{
+    return null;
+}
+
+// @codingStandardsChangeSetting Generic.Functions.OpeningFunctionBraceKernighanRitchie checkClosures 0
+
+$closureWithArgs = function ($arg1, $arg2){
+    // body
+};
+
+function myFunction() : Something
+{
+    return null;
+}
+
+function myFunction() : Something // Break me
+{
+    return null;
+}
+
+function myFunction(): Something {
+    return null;
+}
+
+function myFunction(): Something
+{
+    return null;
+}

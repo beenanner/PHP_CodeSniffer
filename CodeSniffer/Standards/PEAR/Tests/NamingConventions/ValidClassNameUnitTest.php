@@ -38,7 +38,7 @@ class PEAR_Tests_NamingConventions_ValidClassNameUnitTest extends AbstractSniffU
      * The key of the array should represent the line number and the value
      * should represent the number of errors that should occur on that line.
      *
-     * @return array(int => int)
+     * @return array<int, int>
      */
     public function getErrorList()
     {
@@ -55,6 +55,12 @@ class PEAR_Tests_NamingConventions_ValidClassNameUnitTest extends AbstractSniffU
                 42 => 2,
                 44 => 1,
                 46 => 1,
+                50 => 1,
+                52 => 2,
+                54 => 1,
+                64 => 1,
+                66 => 2,
+                68 => 1,
                );
 
     }//end getErrorList()
@@ -66,7 +72,7 @@ class PEAR_Tests_NamingConventions_ValidClassNameUnitTest extends AbstractSniffU
      * The key of the array should represent the line number and the value
      * should represent the number of warnings that should occur on that line.
      *
-     * @return array(int => int)
+     * @return array<int, int>
      */
     public function getWarningList()
     {

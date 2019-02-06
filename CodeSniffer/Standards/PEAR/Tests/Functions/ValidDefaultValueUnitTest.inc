@@ -83,4 +83,17 @@ class myClass()
     }
 }
 
-?>
+function myFunc($req, $opt=null, ...$params) {}
+
+// Type hinting with NULL
+function foo(Foo $foo = null, $bar) {}
+function foo(Foo $foo, $bar) {}
+function foo(Foo $foo = null, $bar = true, $baz) {}
+function foo($baz, Foo $foo = null, $bar = true) {}
+function foo($baz, $bar = true, Foo $foo = null) {}
+
+// Valid closure
+function ($arg1, $arg2='hello') {}
+
+// Invalid closure
+function(array $arg2=array(), array $arg1) {}

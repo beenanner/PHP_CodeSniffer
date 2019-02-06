@@ -39,7 +39,7 @@ class Squiz_Sniffs_Debug_JSLintSniff implements PHP_CodeSniffer_Sniff
     /**
      * Returns the token types that this sniff is interested in.
      *
-     * @return array(int)
+     * @return int[]
      */
     public function register()
     {
@@ -68,12 +68,13 @@ class Squiz_Sniffs_Debug_JSLintSniff implements PHP_CodeSniffer_Sniff
             return;
         }
 
-        $cmd = "$rhinoPath \"$jslintPath\" \"$fileName\"";
+        $rhinoPath  = escapeshellcmd($rhinoPath);
+        $jslintPath = escapeshellcmd($jslintPath);
+
+        $cmd = "$rhinoPath \"$jslintPath\" ".escapeshellarg($fileName);
         $msg = exec($cmd, $output, $retval);
 
         if (is_array($output) === true) {
-            $tokens = $phpcsFile->getTokens();
-
             foreach ($output as $finding) {
                 $matches    = array();
                 $numMatches = preg_match('/Lint at line ([0-9]+).*:(.*)$/', $finding, $matches);
@@ -83,25 +84,14 @@ class Squiz_Sniffs_Debug_JSLintSniff implements PHP_CodeSniffer_Sniff
 
                 $line    = (int) $matches[1];
                 $message = 'jslint says: '.trim($matches[2]);
+                $phpcsFile->addWarningOnLine($message, $line, 'ExternalTool');
+            }
+        }
 
-                // Find the token at the start of the line.
-                $lineToken = null;
-                foreach ($tokens as $ptr => $info) {
-                    if ($info['line'] === $line) {
-                        $lineToken = $ptr;
-                        break;
-                    }
-                }
-
-                if ($lineToken !== null) {
-                    $phpcsFile->addWarning($message, $lineToken, 'ExternalTool');
-                }
-            }//end foreach
-        }//end if
+        // Ignore the rest of the file.
+        return ($phpcsFile->numTokens + 1);
 
     }//end process()
 
 
 }//end class
-
-?>

@@ -202,4 +202,30 @@ class Magic_Case_Test {
     function __tostring() {}
 }
 function __autoLoad() {}
-?>
+function _() {}
+
+function __debugInfo() {}
+class Foo {
+    function __debugInfo() {}
+}
+
+/* Magic methods in anonymous classes. */
+$a new class {
+    function __construct() {}
+    function __destruct() {}
+    function __call() {}
+    function __callStatic() {}
+    function __get() {}
+    function __set() {}
+    function __isset() {}
+    function __unset() {}
+    function __sleep() {}
+    function __wakeup() {}
+    function __toString() {}
+    function __set_state() {}
+    function __clone() {}
+    function __autoload() {}
+    function __invoke() {}
+    function __myFunction() {}
+    function __my_function() {}
+}

@@ -38,7 +38,7 @@ class Squiz_Tests_NamingConventions_ValidVariableNameUnitTest extends AbstractSn
      * The key of the array should represent the line number and the value
      * should represent the number of errors that should occur on that line.
      *
-     * @return array(int => int)
+     * @return array<int, int>
      */
     public function getErrorList()
     {
@@ -73,11 +73,6 @@ class Squiz_Tests_NamingConventions_ValidVariableNameUnitTest extends AbstractSn
                    117 => 1,
                   );
 
-        // The trait test will only work in PHP versions where traits exist.
-        if (version_compare(PHP_VERSION, '5.4.0') < 0) {
-            $errors[118] = 1;
-        }
-
         return $errors;
 
     }//end getErrorList()
@@ -89,7 +84,7 @@ class Squiz_Tests_NamingConventions_ValidVariableNameUnitTest extends AbstractSn
      * The key of the array should represent the line number and the value
      * should represent the number of warnings that should occur on that line.
      *
-     * @return array(int => int)
+     * @return array<int, int>
      */
     public function getWarningList()
     {

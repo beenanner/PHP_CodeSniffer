@@ -34,3 +34,37 @@ EOF;
 	/**
      *
 	*/
+
+$str = 'hello
+        there';
+
+/**
+ * This PHP DocBlock should be fine, even though there is a single space at the beginning.
+ *
+ * @var int $x
+ */
+$x = 1;
+
+?>
+<html>
+    <head>
+		<title>Foo</title>
+	</head>
+	<body>
+		<div>
+    		<div>
+				<div>
+	    		</div>
+    	    </div>
+        </div>
+    </body>
+</html>
+
+<?php
+
+		    // Issue #1404
+        	// This is a line with mixed tabs and spaces.
+	    	echo 'And here is another line with mixed tabs and spaces.'
+	        echo 'And another one.'
+    	    echo 'And another one.'
+        	echo 'And another one.'

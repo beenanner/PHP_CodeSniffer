@@ -192,7 +192,43 @@ class FunctionCommentThrowTagUnitTest
 
     }//end okFunction
 
+    /**
+     * Needs at throws tag for rethrown exception,
+     * even though we have one throws tag.
+     *
+     * @throws PHP_Exception1
+     */
+    public function notOkVariableRethrown()
+    {
+        throw new PHP_Exception1('Error');
 
+        try {
+            // Do something.
+        } catch (PHP_Exception2 $e) {
+            logError();
+            throw $e;
+        }
+
+    }//end notOkVariableRethrown()
+
+    /**
+     * Has correct throws tags for all exceptions
+     *
+     * @throws PHP_Exception1
+     * @throws PHP_Exception2
+     */
+    public function okVariableRethrown()
+    {
+        throw new PHP_Exception1('Error');
+
+        try {
+            // Do something.
+        } catch (PHP_Exception2 $e) {
+            logError();
+            throw $e;
+        }
+
+    }//end okVariableRethrown()
 }//end class
 
 class NamespacedException {
@@ -228,5 +264,61 @@ class Foo {
     public function bar() {
         throw new Exception();
     }
+
+    /**
+     * Returns information for a test.
+     *
+     * This info includes parameters, their valid values.
+     *
+     * @param integer $projectid Id of the project.
+     *
+     * @return array
+     * @throws ChannelException If the project is invalid.
+     */
+    public static function getTestInfo($projectid=NULL)
+    {
+        try {
+            DAL::beginTransaction();
+            DAL::commit();
+        } catch (DALException $e) {
+            DAL::rollBack();
+            throw new ChannelException($e);
+        }
+    }
 }
-?>
+
+class Test
+{
+    /**
+     * Folder name.
+     *
+     * @var string
+     */
+    protected $folderName;
+
+    protected function setUp()
+    {
+        parent::setUp();
+
+        if ( !strlen($this->folderName) ) {
+            throw new \RuntimeException('The $this->folderName must be specified before proceeding.');
+        }
+    }
+
+    /*
+     *
+     */
+    protected function foo()
+    {
+    }
+
+    /**
+     * @return Closure
+     */
+    public function getStuff()
+    {
+        return function () {
+            throw new RuntimeException("bam!");
+        };
+    }
+}

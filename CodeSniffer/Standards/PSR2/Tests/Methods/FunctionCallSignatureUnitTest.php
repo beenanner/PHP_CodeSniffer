@@ -38,14 +38,34 @@ class PSR2_Tests_Methods_FunctionCallSignatureUnitTest extends AbstractSniffUnit
      * The key of the array should represent the line number and the value
      * should represent the number of errors that should occur on that line.
      *
-     * @return array(int => int)
+     * @return array<int, int>
      */
     public function getErrorList()
     {
         return array(
-                18 => 3,
-                21 => 2,
-                48 => 1,
+                18  => 3,
+                21  => 1,
+                48  => 1,
+                87  => 1,
+                90  => 1,
+                91  => 1,
+                103 => 1,
+                111 => 1,
+                117 => 4,
+                121 => 1,
+                125 => 1,
+                129 => 1,
+                133 => 1,
+                138 => 1,
+                146 => 1,
+                150 => 1,
+                154 => 1,
+                158 => 1,
+                162 => 1,
+                167 => 1,
+                172 => 1,
+                175 => 1,
+                178 => 1,
                );
 
     }//end getErrorList()
@@ -57,7 +77,7 @@ class PSR2_Tests_Methods_FunctionCallSignatureUnitTest extends AbstractSniffUnit
      * The key of the array should represent the line number and the value
      * should represent the number of warnings that should occur on that line.
      *
-     * @return array(int => int)
+     * @return array<int, int>
      */
     public function getWarningList()
     {
