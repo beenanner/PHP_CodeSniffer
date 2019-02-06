@@ -86,3 +86,23 @@ THEN
 
 if (in_array($arg1, ['foo','bar'])) {}
 if (in_array($arg1, array('foo','bar'))) {}
+
+$b = foo(
+    "1", // this is a comment
+    "2",  // this is a comment
+    "3",// this is a comment
+    "4"
+);
+
+var_dump(
+    <<<TEXT
+foo
+TEXT
+    ,
+    'bar'
+);
+
+unset($foo,$bar);
+
+$closure($foo,$bar);
+$var = $closure() + $closure($foo,$bar) + self::$closure($foo,$bar);

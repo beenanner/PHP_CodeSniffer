@@ -33,12 +33,26 @@ class Squiz_Tests_ControlStructures_InlineIfDeclarationUnitTest extends Abstract
 
 
     /**
+     * Get a list of CLI values to set befor the file is tested.
+     *
+     * @param string $testFile The name of the file being tested.
+     *
+     * @return array
+     */
+    public function getCliValues($testFile)
+    {
+        return array('--encoding=utf-8');
+
+    }//end getCliValues()
+
+
+    /**
      * Returns the lines where errors should occur.
      *
      * The key of the array should represent the line number and the value
      * should represent the number of errors that should occur on that line.
      *
-     * @return array(int => int)
+     * @return array<int, int>
      */
     public function getErrorList()
     {
@@ -53,6 +67,8 @@ class Squiz_Tests_ControlStructures_InlineIfDeclarationUnitTest extends Abstract
                 13 => 1,
                 20 => 1,
                 24 => 4,
+                44 => 1,
+                47 => 1,
                );
 
     }//end getErrorList()
@@ -64,7 +80,7 @@ class Squiz_Tests_ControlStructures_InlineIfDeclarationUnitTest extends Abstract
      * The key of the array should represent the line number and the value
      * should represent the number of warnings that should occur on that line.
      *
-     * @return array(int => int)
+     * @return array<int, int>
      */
     public function getWarningList()
     {

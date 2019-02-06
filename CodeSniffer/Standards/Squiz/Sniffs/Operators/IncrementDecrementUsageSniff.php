@@ -87,7 +87,10 @@ class Squiz_Sniffs_Operators_IncrementDecrementUsageSniff implements PHP_CodeSni
 
         // Work out where the variable is so we know where to
         // start looking for other operators.
-        if ($tokens[($stackPtr - 1)]['code'] === T_VARIABLE) {
+        if ($tokens[($stackPtr - 1)]['code'] === T_VARIABLE
+            || ($tokens[($stackPtr - 1)]['code'] === T_STRING
+            && $tokens[($stackPtr - 2)]['code'] === T_OBJECT_OPERATOR)
+        ) {
             $start = ($stackPtr + 1);
         } else {
             $start = ($stackPtr + 2);
@@ -98,7 +101,7 @@ class Squiz_Sniffs_Operators_IncrementDecrementUsageSniff implements PHP_CodeSni
             return;
         }
 
-        if (in_array($tokens[$next]['code'], PHP_CodeSniffer_Tokens::$arithmeticTokens) === true) {
+        if (isset(PHP_CodeSniffer_Tokens::$arithmeticTokens[$tokens[$next]['code']]) === true) {
             $error = 'Increment and decrement operators cannot be used in an arithmetic operation';
             $phpcsFile->addError($error, $stackPtr, 'NotAllowed');
             return;
@@ -209,7 +212,11 @@ class Squiz_Sniffs_Operators_IncrementDecrementUsageSniff implements PHP_CodeSni
             if ($tokens[$stackPtr]['code'] !== T_EQUAL) {
                 $negative = $phpcsFile->findPrevious(T_MINUS, ($nextNumber - 1), $stackPtr);
                 if ($negative !== false) {
-                    $operator = ($operator === '+') ? '-' : '+';
+                    if ($operator === '+') {
+                        $operator = '-';
+                    } else {
+                        $operator = '+';
+                    }
                 }
             }
 
@@ -223,12 +230,10 @@ class Squiz_Sniffs_Operators_IncrementDecrementUsageSniff implements PHP_CodeSni
             }
 
             $error .= " operators should be used where possible; found \"$found\" but expected \"$expected\"";
-            $phpcsFile->addError($error, $stackPtr);
+            $phpcsFile->addError($error, $stackPtr, 'Found');
         }//end if
 
     }//end processAssignment()
 
 
 }//end class
-
-?>

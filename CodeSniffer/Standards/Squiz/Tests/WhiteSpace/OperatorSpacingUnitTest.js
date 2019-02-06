@@ -54,3 +54,47 @@ switch (result) {
 
 result = x?y:z;
 result = x ? y : z;
+
+if (something === true
+    ^ somethingElse === true
+) {
+    return false;
+}
+
+y = 1
+  + 2  
+  - 3;
+
+y = 1 + 
+    2 - 
+    3;
+
+y = 1
++ 2
+- 3;
+
+// @codingStandardsChangeSetting Squiz.WhiteSpace.OperatorSpacing ignoreNewlines true
+y = 1
+  + 2
+  - 3;
+
+y = 1 +
+    2 -
+    3;
+
+y = 1
++ 2
+- 3;
+// @codingStandardsChangeSetting Squiz.WhiteSpace.OperatorSpacing ignoreNewlines false
+
+if (true || -1 == b) {
+}
+
+x = x << y;
+x <<= y;
+x = x >> y;
+x >>= y;
+x = x >>> y;
+x >>>= y;
+
+var foo = bar.map(baz=> baz.length);

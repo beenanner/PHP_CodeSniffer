@@ -14,3 +14,12 @@ for (i=0   ; i<3 ; i++) {
    }
 }
 alert('hi');
+;
+
+var sum = a /* + b */;
+
+var sum = a // +b
+;
+
+var sum = a /* +b
+    + c */ ;

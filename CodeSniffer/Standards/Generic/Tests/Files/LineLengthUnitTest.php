@@ -33,19 +33,33 @@ class Generic_Tests_Files_LineLengthUnitTest extends AbstractSniffUnitTest
 
 
     /**
+     * Get a list of CLI values to set before the file is tested.
+     *
+     * @param string $testFile The name of the file being tested.
+     *
+     * @return array
+     */
+    public function getCliValues($testFile)
+    {
+        return array('--tab-width=4');
+
+    }//end getCliValues()
+
+
+    /**
      * Returns the lines where errors should occur.
      *
      * The key of the array should represent the line number and the value
      * should represent the number of errors that should occur on that line.
      *
-     * @return array(int => int)
+     * @return array<int, int>
      */
     public function getErrorList()
     {
         return array(
                 31 => 1,
                 34 => 1,
-                68 => 1,
+                45 => 1,
                );
 
     }//end getErrorList()
@@ -57,7 +71,7 @@ class Generic_Tests_Files_LineLengthUnitTest extends AbstractSniffUnitTest
      * The key of the array should represent the line number and the value
      * should represent the number of warnings that should occur on that line.
      *
-     * @return array(int => int)
+     * @return array<int, int>
      */
     public function getWarningList()
     {
@@ -68,6 +82,9 @@ class Generic_Tests_Files_LineLengthUnitTest extends AbstractSniffUnitTest
                 24 => 1,
                 29 => 1,
                 37 => 1,
+                63 => 1,
+                73 => 1,
+                75 => 1,
                );
 
     }//end getWarningList()

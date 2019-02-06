@@ -42,27 +42,35 @@ echo 'hi';
 ?>
 
 <?php
+// This is another really long comment that is going to go well over 100 characters, with no closing php tag after it.
+
 /**
- * Comments contining CVS IDs can be long, but should be ignored because
- * they cannot be changed by the developer. Same with license URLs. Also
- * and URL/HeadURL in subversion.
+ * Does something cool, blah blah, not so long line.
  *
- * @license http://www.freebsd.org/copyright/freebsd-license.html BSD License (2 Clause)
- *
- * $URL: file/paths/in/subversion/are/prefixed/by/URL/or/HeadURL/and/can/be/very/long/especially/if/they/are/in/a/branch $
- * $HeadURL: https://svn.example.org/file/paths/in/subversion/are/prefixed/by/URL/or/HeadURL/and/can/be/very/long/especially/if/they/are/in/a/branch $
+ * We're using Wilson scoring because blah blah, see:
+ * http://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Wilson_score_interval
  */
 
-// $URL: file/paths/in/subversion/are/prefixed/by/URL/or/HeadURL/and/can/be/very/long/especially/if/they/are/in/a/branch $
-// $HeadURL: https://svn.example.org/file/paths/in/subversion/are/prefixed/by/URL/or/HeadURL/and/can/be/very/long/especially/if/they/are/in/a/branch $
+// Go here:
+// http://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Wilson_score_interval
 
-echo '$URL: file/paths/in/subversion/are/prefixed/by/URL/or/HeadURL/and/can/be/very/long/especially/if/they/are/in/a/branch $';
-echo '$HeadURL: https://svn.example.org/file/paths/in/subversion/are/prefixed/by/URL/or/HeadURL/and/can/be/very/long/especially/if/they/are/in/a/branch $'
+# http://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval#Wilson_score_interval
 
- ?>
+if ($foo) {
+    if ($bar) {
+        if ($baz) {
+            // Next line can be broken:
+            // foo bar baz http://en.wikipedia.org/wiki/Binomial_proportion#blahblahblahblah
+            // But this one is just too long to break with this indent:
+            // foo bar baz http://en.wikipedia.org/wiki/Binomial_proportion#blahblahblahblahblah
+        }
+    }
+}
 
-    * $URL: file/paths/in/subversion/are/prefixed/by/URL/or/HeadURL/and/can/be/very/long/especially/if/they/are/in/a/branch $
-    * $HeadURL: https://svn.example.org/file/paths/in/subversion/are/prefixed/by/URL/or/HeadURL/and/can/be/very/long/especially/if/they/are/in/a/branch $
-
-<?php
-// This is another really long comment that is going to go well over 100 characters, with no closing php tag after it.
+/* -------------------------------- 80 chars -------------------------------- */
+$ab	= function () { /* comment */ if ($foo === true) { return (int) $foo; } };
+$ab	= function ()	{ /* comment */ if ($foo === true){ return	(int)$foo; }};
+$ab	= function ()	{ /* comment */ if ($foo === true) { return	(int) $foo; }  };
+	$ab	= function () { /* comment */ if ($foo === true) { return(int) $foo; }};
+	$ab	= function () { /* comment */ if ($foo === true) {	return(int) $foo; }};
+$ab	=  	$ab	=  	$ab	=  	$ab	=  	$ab	=  	$ab	=  	$ab	=  	$ab	=  	$ab	=  	$ab;

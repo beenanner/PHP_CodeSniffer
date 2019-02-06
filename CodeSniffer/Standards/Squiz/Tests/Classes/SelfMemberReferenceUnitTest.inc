@@ -72,6 +72,14 @@ class Controller
     }
 }
 
+class Foo
+{
+    public static function bar()
+    {
+        \Foo::baz();
+    }
+}
+
 namespace TYPO3\CMS\Reports;
 
 class Status {
@@ -89,4 +97,25 @@ class Status implements \TYPO3\CMS\Reports\ReportInterface {
         $highestSeverity = \TYPO3\CMS\Reports\Status::NOTICE;
     }
 }
-?>
+
+namespace Foo;
+
+class Bar {
+
+    function myFunction()
+    {
+        \Foo\Whatever::something();
+        \Foo\Bar::something();
+    }
+}
+
+namespace Foo\Bar;
+
+class Baz {
+
+    function myFunction()
+    {
+        \Foo\Bar\Whatever::something();
+        \Foo\Bar\Baz::something();
+    }
+}

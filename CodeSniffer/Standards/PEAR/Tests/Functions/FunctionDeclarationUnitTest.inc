@@ -117,7 +117,7 @@ $longArgs_longVars = function (
 
 $longArgs_longVars = function (
     $longArgument,
-    $muchLongerArgument) use (
+    $muchLongerArgument)use(
     $muchLongerVar3) {
     // body
 };
@@ -136,4 +136,76 @@ function test()
         // body
     };
 }
-?>
+
+function
+    myFunction()
+{
+}
+
+function
+myFunction()
+{
+}
+
+
+use function foo\bar;
+
+use
+    function bar\baz;
+
+namespace {
+    use function Name\Space\f;
+    f();
+}
+
+$var = function() {return true;};
+$var = function() {return true;
+};
+function blah(){return true;
+}
+
+$closureWithArgsAndVars = function($arg1, $arg2) use ($var1, $var2){
+    // body
+};
+
+function
+blah
+()
+{
+    // body
+}
+
+$b = function &() {
+    echo "hello";
+};
+
+function foo(
+    $param1,
+    $param2,
+    $param3,
+) : SomeClass {
+}
+
+function foo(
+    $param1,
+    $param2,
+    $param3,
+): SomeClass {
+}
+
+function foo(
+    $param1,
+    $param2,
+    $param3,
+): SomeClass // Comment here
+{
+}
+
+function foo(
+    $param1,
+
+    $param2,
+
+    $param3,
+) : SomeClass {
+}

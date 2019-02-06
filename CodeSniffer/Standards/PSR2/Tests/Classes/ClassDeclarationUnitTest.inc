@@ -116,7 +116,45 @@ interface MyInterface extends
  LongInterfaceName1,
     LongInterfaceName2,
      LongInterfaceName3,
+LongInterfaceName4
 {
 }
 
-?>
+abstract
+class Test
+{
+}
+
+class ClassName implements
+
+    \ArrayAccess,\Countable,
+\Serializable
+{
+    // constants, properties, methods
+}
+
+class C1
+{
+
+} // C1
+
+class Base
+{
+    protected $anonymous;
+
+    public function __construct()
+    {
+        $this->anonymous = new class extends ArrayObject
+        {
+            public function __construct()
+            {
+                parent::__construct(['a' => 1, 'b' => 2]);
+            }
+        };
+    }
+}
+
+class A extends B
+    implements C
+{
+}

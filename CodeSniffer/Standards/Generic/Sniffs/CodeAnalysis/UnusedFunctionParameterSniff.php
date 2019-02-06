@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the CodeAnalysis addon for PHP_CodeSniffer.
+ * This file is part of the CodeAnalysis add-on for PHP_CodeSniffer.
  *
  * PHP version 5
  *
@@ -42,7 +42,10 @@ class Generic_Sniffs_CodeAnalysis_UnusedFunctionParameterSniff implements PHP_Co
      */
     public function register()
     {
-        return array(T_FUNCTION);
+        return array(
+                T_FUNCTION,
+                T_CLOSURE,
+               );
 
     }//end register()
 
@@ -75,13 +78,21 @@ class Generic_Sniffs_CodeAnalysis_UnusedFunctionParameterSniff implements PHP_Co
         $end  = --$token['scope_closer'];
 
         $foundContent = false;
+        $validTokens  = array(
+                         T_HEREDOC              => T_HEREDOC,
+                         T_NOWDOC               => T_NOWDOC,
+                         T_END_HEREDOC          => T_END_HEREDOC,
+                         T_END_NOWDOC           => T_END_NOWDOC,
+                         T_DOUBLE_QUOTED_STRING => T_DOUBLE_QUOTED_STRING,
+                        );
+        $validTokens += PHP_CodeSniffer_Tokens::$emptyTokens;
 
         for (; $next <= $end; ++$next) {
             $token = $tokens[$next];
             $code  = $token['code'];
 
             // Ignorable tokens.
-            if (in_array($code, PHP_CodeSniffer_Tokens::$emptyTokens) === true) {
+            if (isset(PHP_CodeSniffer_Tokens::$emptyTokens[$code]) === true) {
                 continue;
             }
 
@@ -132,18 +143,9 @@ class Generic_Sniffs_CodeAnalysis_UnusedFunctionParameterSniff implements PHP_Co
             ) {
                 // Tokenize strings that can contain variables.
                 // Make sure the string is re-joined if it occurs over multiple lines.
-                $validTokens = array(
-                                T_HEREDOC,
-                                T_NOWDOC,
-                                T_END_HEREDOC,
-                                T_END_NOWDOC,
-                                T_DOUBLE_QUOTED_STRING,
-                               );
-                $validTokens = array_merge($validTokens, PHP_CodeSniffer_Tokens::$emptyTokens);
-
                 $content = $token['content'];
                 for ($i = ($next + 1); $i <= $end; $i++) {
-                    if (in_array($tokens[$i]['code'], $validTokens) === true) {
+                    if (isset($validTokens[$tokens[$i]['code']]) === true) {
                         $content .= $tokens[$i]['content'];
                         $next++;
                     } else {
@@ -183,5 +185,3 @@ class Generic_Sniffs_CodeAnalysis_UnusedFunctionParameterSniff implements PHP_Co
 
 
 }//end class
-
-?>
